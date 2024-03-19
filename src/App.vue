@@ -1,11 +1,11 @@
 <script setup>
-import data from "./assets/data/quizzes.json";
+import q from "./assets/data/quizzes.json";
 import Card from "./components/Card.vue";
 import { ref, watch } from "vue";
-const quizzes = ref(data);
+const quizzes = ref(q);
 const search = ref("");
 watch(search, () => {
-  quizzes.value = data.filter((quiz) =>
+  quizzes.value = q.filter((quiz) =>
     quiz.name.toLocaleLowerCase().includes(search.value.toLocaleLowerCase())
   );
 });
@@ -18,14 +18,7 @@ watch(search, () => {
       <input v-model.trim="search" type="text" placeholder="Search..." />
     </header>
     <div class="options-container">
-      <Card v-for="item in data" :key="item.id" />
-      <!-- <div v-for="quiz in quizzes" v-bind:key="quiz.id" class="card">
-        <img v-bind:src="quiz.img" alt="" />
-        <div class="card-text">
-          <h2>{{ quiz.name }}</h2>
-          <p>{{ quiz.questions.length }}</p>
-        </div>
-      </div> -->
+      <Card v-for="quiz in quizzes" :key="quiz.id" :quiz="quiz" />
     </div>
   </div>
 </template>

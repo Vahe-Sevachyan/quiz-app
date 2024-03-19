@@ -1,15 +1,26 @@
+<script setup>
+import { defineProps } from "vue";
+
+defineProps({
+  quiz: {
+    type: Object,
+    required: true,
+  },
+});
+</script>
+
 <template>
   <div class="card">
     <div>
-      <img src="" />
+      <img :src="quiz.img" />
       <div>
-        <h2>Math</h2>
-        <p>3 questions</p>
+        <h2>{{ quiz.name }}</h2>
+        <p>{{ quiz.questions.length }}</p>
       </div>
     </div>
   </div>
 </template>
-<script setup></script>
+
 <style scoped>
 .card {
   width: 310px;
